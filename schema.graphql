@@ -1,0 +1,61 @@
+type Approval @entity(immutable: true) {
+  id: Bytes!
+  owner: Bytes! # address
+  approved: Bytes! # address
+  tokenId: BigInt! # uint256
+  blockNumber: BigInt!
+  blockTimestamp: BigInt!
+  transactionHash: Bytes!
+}
+
+type ApprovalForAll @entity(immutable: true) {
+  id: Bytes!
+  owner: Bytes! # address
+  operator: Bytes! # address
+  approved: Boolean! # bool
+  blockNumber: BigInt!
+  blockTimestamp: BigInt!
+  transactionHash: Bytes!
+}
+
+type BasketId @entity(immutable: true) {
+  id: Bytes!
+  owner: Bytes! # address
+  basketId: BigInt! # uint256
+  vaultNumber: BigInt! # uint256
+  blockNumber: BigInt!
+  blockTimestamp: BigInt!
+  transactionHash: Bytes!
+}
+
+type PushProtocolAllocations @entity(immutable: true) {
+  id: Bytes!
+  chain: BigInt! # uint32
+  vault: Bytes! # address
+  deltas: [BigInt!]! # int256[]
+  blockNumber: BigInt!
+  blockTimestamp: BigInt!
+  transactionHash: Bytes!
+}
+
+type RebalanceBasket @entity(immutable: true) {
+  id: Bytes!
+  basketId: BigInt! # uint256
+  rebalancingPeriod: BigInt! # uint256
+  unredeemedRewards: BigInt! # int256
+  redeemedRewards: BigInt! # int256
+  deltaAllocations: [BigInt!]! # int256[]
+  blockNumber: BigInt!
+  blockTimestamp: BigInt!
+  transactionHash: Bytes!
+}
+
+type Transfer @entity(immutable: true) {
+  id: Bytes!
+  from: Bytes! # address
+  to: Bytes! # address
+  tokenId: BigInt! # uint256
+  blockNumber: BigInt!
+  blockTimestamp: BigInt!
+  transactionHash: Bytes!
+}
