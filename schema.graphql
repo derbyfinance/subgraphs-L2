@@ -18,14 +18,39 @@ type ApprovalForAll @entity(immutable: true) {
   transactionHash: Bytes!
 }
 
-type BasketId @entity(immutable: true) {
-  id: Bytes!
-  owner: Bytes! # address
+type BasketId @entity {
+  id: ID! # basketId in HEX
+  owner: Player! # address
   basketId: BigInt! # uint256
+  name: String! # string
   vaultNumber: BigInt! # uint256
+  rebalancingPeriod: BigInt # uint256
+  stakedAmount: BigInt! # uint256
+  allocations: [BigInt!] # uint256[]
+  deltaAllocations: [BigInt!] # int256[]
+  redeemedRewards: BigInt! # uint256
+  unredeemedRewards: BigInt! # uint256
   blockNumber: BigInt!
   blockTimestamp: BigInt!
   transactionHash: Bytes!
+  # performance fee is som van allocaties / totaal. Opslaan per rebalancing period
+}
+
+type Race @entity {
+  id: ID! # vaultNumber + rebalancingPeriod in HEX
+  rebalancingPeriod: BigInt! # uint256
+  vaultNumber: BigInt! # uint256
+  stakedTokens: BigInt # uint256
+  totalRewards: BigInt # uint256
+  apy: BigInt # uint256
+}
+
+type Player @entity {
+  id: Bytes! # address
+  baskets: [BasketId!]! @derivedFrom(field: "owner")
+  # address
+  # performance fee
+  # medals
 }
 
 type PushProtocolAllocations @entity(immutable: true) {
