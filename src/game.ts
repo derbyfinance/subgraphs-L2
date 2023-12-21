@@ -78,6 +78,9 @@ export function handlePushProtocolAllocations(
   entity.chain = event.params.chain
   entity.vault = event.params.vault
   entity.deltas = event.params.deltas
+  for (let i = 0; i < event.params.deltas.length; i++) {
+    entity.currentAllocations[i] = entity.currentAllocations[i].plus(event.params.deltas[i]);
+  }
 
   entity.blockNumber = event.block.number
   entity.blockTimestamp = event.block.timestamp

@@ -58,6 +58,7 @@ type PushProtocolAllocations @entity(immutable: true) {
   chain: BigInt! # uint32
   vault: Bytes! # address
   deltas: [BigInt!]! # int256[]
+  currentAllocations: [BigInt!]! # uint256[]
   blockNumber: BigInt!
   blockTimestamp: BigInt!
   transactionHash: Bytes!
